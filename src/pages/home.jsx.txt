@@ -1,0 +1,173 @@
+import * as Icons from '../component/icons';
+import Topnav from '../component/topnav/topnav';
+import TitleL from '../component/text/title-l';
+import TitleM from '../component/text/title-m'
+import PlaylistCardA from '../component/cards/playlist-card-a';
+import PlaylistCardB from '../component/cards/playlist-card-b';
+import PlaylistCardS from '../component/cards/playlist-card-s';
+import PlaylistCardM from '../component/cards/playlist-card-m';
+import BannerImage from '../component/banner/banner-image';
+import SocialImage from '../component/social/social-image';
+// import SplashScreen from '../component/splash/splash-preload';
+/* import BannerImage from './BannerImage'; */
+
+import styles from "./home.module.css";
+
+import { PLAYLIST } from '../data/index';
+import { useState, useEffect } from 'react';
+
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function Home(){
+    const playlistToShuffle1 = PLAYLIST.slice(0, 11);
+    const shuffledPlaylist1 = shuffleArray([...playlistToShuffle1]);
+
+    const playlistToShuffle2 = PLAYLIST.slice(16, 23);
+    const shuffledPlaylist2 = shuffleArray([...playlistToShuffle2]);
+
+    const remainingPlaylist = PLAYLIST.slice(19);
+
+    return (
+        <div className={styles.Home}>
+            <div className={styles.HoverBg}></div>
+            <div className={styles.Bg}></div>
+
+            <Topnav />
+            <div className={styles.Content}>
+
+                <section>
+                     <div className={styles.SectionTitle}>
+                        <TitleL>Hoy en&nbsp; <b className={styles.Content}> MIXTAPE✦</b> </TitleL>
+                    </div>
+
+                    {/* <div className={styles.SectionCards}>
+                        {shuffledPlaylist1.map((item) => {
+                            return (
+                                <PlaylistCardS 
+                                    key={item.title}
+                                    data={item}
+                                />
+                            );
+                        })}
+                    </div> */}
+
+                    <div className={styles.SectionCards}>
+                        {shuffledPlaylist1.map((item, index) => {
+                            return (
+                                <div 
+                                    key={item.title}
+                                    style={{animationDelay: `${index * 0.35}s`}} // Añade un retraso de 0.1s por cada tarjeta
+                                    className="fade-in"
+                                >
+                                    <PlaylistCardS 
+                                        data={item}
+                                    />
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                </section>
+
+                <section>
+                    <div className={styles.SectionTitle}>
+                        <TitleL>En tarima</TitleL>
+                    </div>
+
+                    <div className={styles.SectionCardsA}>
+                        {shuffledPlaylist2.map((item, index) => {
+                            return (
+                                <div 
+                                    key={item.title}
+                                    style={{animationDelay: `${index * 0.35}s`}}
+                                    className="fade-in2"
+                                >
+                                    <PlaylistCardA 
+                                        data={item}
+                                    />
+                                </div>
+                            );
+                        })}
+                    </div>
+                </section>
+
+                <section>
+                    <BannerImage image="https://mix-tape.web.app/image/app/meta-mixtape.jpg" text="mix-tape.web.app" subtitle="🔗 Versión beta disponible" description="Promocionado" url="https://alibhtty.github.io/mixtape-install/"/>
+                </section>
+
+                <section>
+                    <div className={styles.SectionTitle}>
+                        <TitleL>Discos</TitleL>
+                    </div>
+
+                    <div className={styles.SectionCardsB}>
+                        {PLAYLIST.slice(8, 11).map((item) => {
+                            return (
+                                <PlaylistCardB 
+                                    key={item.title}
+                                    data={item}
+                                />
+                            );
+                        })}
+                    </div>
+                </section>
+
+                {/* <section>
+                    <BannerImage image="https://mix-tape.web.app/image/add/add01.jpg" text="callsaul.com" subtitle="Anúnciate aquí" description="Promocionado" url="https://instagram.com/ali.bhtty"/>
+                </section> */}
+
+                <section>
+                    {/* <a className={styles.BtnContainer} href='https://donate.stripe.com/eVa6sicxD3Nh5yw6or' target='_blank'>
+                        <button className={styles.ProfileBtn}>
+                            <Icons.Donate />
+                            HACER UNA DONACIÓN
+                        </button>
+                    </a> */}
+
+                    <a className={styles.BtnContainer} href="https://t.me/alibhtty" target="_blank">  {/* https://api.whatsapp.com/send?phone=34602316998&text=Hola 👋 */}
+                        <button className={styles.ProfileBtn2}>
+                            Enviar mensaje directo
+                         </button>
+                    </a>
+
+                    
+                </section>
+
+                <section>
+                    <div className={styles.SectionTitle}>
+                        <TitleM>Reproducido recientemente</TitleM>
+                    </div>
+                    
+                    <div className={styles.SectionCardsMedium}>
+                        {PLAYLIST.slice(2, 10).map((item) => {
+                            return (
+                                <PlaylistCardM 
+                                    key={item.title}
+                                    data={item}
+                                />
+                            );
+                        })}
+                    </div>
+
+                    {/* <section>
+                        <div className={styles.socialBtn}>
+                            <a className={styles.socialBox}>
+                                <ion-icon name="logo-instagram"></ion-icon>
+                            </a>
+                            <ion-icon name="logo-instagram"></ion-icon>
+                            <SocialImage image="https://mix-tape.web.app/image/app/instagram.jpg" text="mixtape.io" subtitle="@mixtape.io" description="Promocionado" url="https://instagram.com/ali.bhtty"/>
+                        </div>
+                    </section> */}
+
+                    <div className={styles.SectionCred}>
+                        <div>4B & CO. <br></br> <b>v1.14</b>  </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    );
+};
+
+export default Home;

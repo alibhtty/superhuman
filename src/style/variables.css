@@ -1,0 +1,19 @@
+:root{
+    --sidenav-black: #000;
+    --sidenav-active: #282828;
+    --text-gray: #b3b3b3;
+    --text-white: #fff;
+    --main-background: #000000; /* 121212 */
+    --card-background: #111111; /* 181818 */
+    --black-glass: #000000;
+    --black-0: rgb(0,0,0,0);
+    --white-0: rgb(255,255,255,.5);
+    --sidenav-width: 238px;
+    --sidenav-margin-left: 24px;
+    --sidenav-margin-right: 24px;
+    --small-cards-column-width: 270px;
+    --cards-column-width: 180px;
+    --hover-home-bg: rgb(6,110,255);  /* 73,73,73 */
+
+    --version: #acee06;
+}

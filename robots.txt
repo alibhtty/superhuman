@@ -1,0 +1,4 @@
+Sitemap: https://mix-tape.web.app/sitemap.xml
+
+User-agent: *
+Disallow:

@@ -1,0 +1,37 @@
+.SearchPage{
+    /* background-color: #000000; */ /* 121212 */
+    color: #fff;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: linear-gradient(155deg, black,black, rgb(6,110,255, .9));
+}
+.Search{
+    height: 80%;
+    padding: 0px 0 0 32px;
+    padding-bottom: 32px;
+    /* margin-bottom: 95px; */
+    /* background: linear-gradient(155deg, black,black, rgb(6,110,255, .6)); */
+}
+.SearchCardGrid{
+    /* background-color: #ff6600; */
+    display: flex;
+    overflow-x: scroll;
+
+
+    /* display: grid; */
+    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    padding: 15vh 16px;
+}
+@media screen and (max-width: 640px) {
+    .Search{
+        padding: 0px 0 16px 0px;
+        /* margin-bottom: 230px; */
+       /*  margin-top: 24px; */
+    }
+    .SearchCardGrid{
+        grid-gap: 16px;
+        grid-template-columns: 1fr 1fr;
+    }
+}

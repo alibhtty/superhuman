@@ -1,0 +1,210 @@
+.footerDetails{
+    padding: 0px 32px 0px;
+    /* padding: 24px 32px 24px; */
+    display: inline;
+    /* grid-template-columns: 155px 1fr; */
+    column-gap: 24px;
+    margin-bottom: 30vh;
+}
+.imgBox{
+    width: 155px;  /* 232 */
+    height: auto; /* 232px */
+}
+.imgBox img{
+    width: 100%;
+    height: auto; /* 100% */
+    -webkit-box-shadow: 0 50px 45px rgb(0 0 0 / 50%);
+    box-shadow: 0 50px 45px rgb(0 0 0 / 50%);     /* 0 4px 60px rgb(0 0 0 / 50%) */
+}
+/* .boxBio{
+    display: block;
+} */
+.textBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  justify-content: center;
+}
+.textBox h3{
+    margin: 0;
+    /* margin-top: 4px; */
+    letter-spacing: -0.4px;
+}
+.textBox h1{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    padding: 0.08em 0px;
+    font-size: 80px; /* 86 */
+    line-height: 80px; /* 96 */
+    font-weight: 700;
+    letter-spacing: -.04em;
+    text-transform: none;
+}
+.Artist{
+    /* max-width: 10rem; */
+    justify-content: space-between;
+    /* max-width: 200px; */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* margin-top: 16px; */
+    border: 1px solid #444;
+    border-radius: 25px;
+    /* padding: 10px 12px; */
+    transition: all ease-in-out 1.8;
+    /* margin-bottom: 2rem; */
+    /* margin-left: 40%;
+    margin-right: 40%; */
+    background-color: #111111;
+}
+.Artist:active{
+    border: 1px solid #888;
+}
+.Artist figure{
+    width: 34px; /* 24px */
+    height: 34px;
+    margin: 0;
+    display: inline-block;
+}
+.Artist figure img{
+    border-radius: 50%; /* 50% */
+    width: auto;
+    height: 100%;
+    margin-left: 12px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.Artist p{
+    background-color: azure;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 25px;
+    text-align: center;
+    width: max-content;
+    margin: 0 12px;
+    /* margin-left: 16px; */
+}
+@media screen and (max-width: 640px) {
+    .playlistDetails{
+        margin-top: 3rem; /* 7rem none */
+        grid-template-columns: 1fr;
+        row-gap: 8px;
+        place-items: center;
+        text-align: center;
+    }
+    .imgBox{
+        width: 100%;  /* 180px */
+        height: auto;     /*  270px      188   125px */
+    }
+    .textBox h1{
+        display: block;
+        font-size: 30px;
+        line-height: 30px;
+        height: auto;
+    }
+    .Artist{
+        justify-content: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        /* margin-bottom: 3rem; */
+        /* margin-left: 30%;
+        margin-right: 20%; */
+    }
+}
+@media (orientation: portrait){
+    .footerDetails{
+        margin-bottom: 35vh;
+    } 
+    .Artist{
+        width: fit-content;
+        padding: 10px 0;
+    }
+}
+
+@media (display-mode: standalone){
+    .footerDetails{
+        margin-bottom: 35vh;
+    } 
+    .playlistDetails{
+        margin-bottom: 15vh;
+        margin-top: 4rem;
+    }   
+    .imgBox{
+        width: 100%;  /* 125 */
+        height: auto;     /*  270px      188   125px */
+    }
+}
+@media (orientation: landscape){
+    .imgBox{
+        display: none;
+    }
+    .Artist{
+        /* max-width: 14vw;
+        margin-left: 36vw; */
+        width: auto;
+        padding: 10px 0px;
+        bottom: 10vh;
+    }
+
+}
+
+
+
+
+
+/* playlist-footer.module.css */
+.footerDetails {
+    /* display: flex; */
+    align-items: center;
+  }
+  
+  .imgBox {
+    cursor: pointer;
+    margin-top: 4rem;
+    /* Estilos para la caja de imágenes si es necesario */
+  }
+  
+  .image {
+    cursor: pointer;
+    border-radius: 4px;
+    /* Estilos para las imágenes si es necesario */
+  }
+  
+  .textBox {
+    margin-left: 20px; /* Ajusta el margen según sea necesario */
+  }
+  
+  .Artist {
+    display: flex;
+    align-items: center;
+  }
+  
+  .textBio{
+    color: #000000;
+  }
+  .boxBio {
+    margin-left: 10px; /* Ajusta el margen según sea necesario */
+    margin-right: 10px;
+    background-color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 25px;
+  }
+.followButton {
+    /* background-color: white; */
+    color: #000000;
+    /* border: 1px solid black; */
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.6s, color 0.6s;
+  }
+  
+  .followButton:hover {
+    background-color: #fff;
+    color: white;
+    color: #000;
+  }

@@ -1,0 +1,95 @@
+import { connect } from 'react-redux';
+import { changeTrack } from '../../../actions';
+import * as Icons from '../../icons';
+import IconButton from '../../buttons/icon-button';
+import PlayButton from '../../buttons/play-button';
+import { useEffect, useRef, useState } from 'react';
+
+import { PLAYLIST } from "../../../data/index";
+import styles from "./music-control-box.module.css";
+
+function MusicControlBox(props){
+    const audioRef = useRef();
+    const nextAudioRef = useRef();
+    const [isCrossfading, setIsCrossfading] = useState(false);
+
+    // Cambia a la siguiente canción
+    const nextSong = async () => {
+        const { trackKey } = props.trackData;
+        const song = PLAYLIST[trackKey[0]].playlistData[trackKey[1]];
+        nextAudioRef.current.src = song.songUrl;
+        nextAudioRef.current.play();
+    };
+
+    // Actualiza los metadatos de la canción cada vez que cambia la canción
+    useEffect(() => {
+        if ('mediaSession' in navigator) {
+            const { trackKey } = props.trackData;
+            const song = PLAYLIST[trackKey[0]].playlistData[trackKey[1]];
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: song.songName,
+                artist: song.songArtist,
+                artwork: [{ src: song.songimg, type: 'image/jpeg' }] /*  sizes: '512x512' */
+            });
+        }
+    }, [props.trackData, props.changePlay]);
+
+    // Recupera la canción y el tiempo transcurrido del almacenamiento local
+    useEffect(() => {
+        const currentSong = JSON.parse(localStorage.getItem('currentSong'));
+        const currentTime = localStorage.getItem('currentTime');
+        if (currentSong && currentTime && audioRef.current) {
+            // Carga la canción y el tiempo transcurrido del almacenamiento local
+            props.changeTrack(currentSong.trackKey);
+            audioRef.current.currentTime = currentTime;
+        }
+    }, []);
+
+    // Añade un manejador de eventos para el evento 'beforeunload'
+    useEffect(() => {
+        // Guarda la canción actual y el tiempo transcurrido en el almacenamiento local
+        if (audioRef.current) {
+            localStorage.setItem('currentSong', JSON.stringify(props.trackData));
+            localStorage.setItem('currentTime', audioRef.current.currentTime);
+        }
+    
+        // Reproduce la siguiente canción
+        if (!isCrossfading && audioRef.current && audioRef.current.duration - audioRef.current.currentTime <= 5) {
+            setIsCrossfading(true);
+            nextSong();
+        }
+    }, [props.trackData, audioRef.current ? audioRef.current.currentTime : null]);
+    
+    function decreaseIndex(){
+        if(props.trackData.trackKey[1] !== 0){
+            props.changeTrack([props.trackData.trackKey[0], props.trackData.trackKey[1]-1])
+        }
+    }
+    function increaseIndex(){
+        if(props.trackData.trackKey[1] !== (PLAYLIST[props.trackData.trackKey[0]].playlistData.length)-1){
+            props.changeTrack([props.trackData.trackKey[0], parseInt(props.trackData.trackKey[1])+1])
+        }
+    }
+
+    return (
+        <div className={styles.musicControl}>
+            <button className={styles.buttonleft} onClick={decreaseIndex}>
+                <Icons.Prev />
+            </button>
+            <PlayButton className={styles.buttonplay} isthisplay={true}/>
+            <button className={styles.button} onClick={increaseIndex}>
+                <Icons.Next />
+            </button>
+            <audio ref={audioRef} src={props.trackData.track} /> {/* Asegúrate de que el elemento de audio está presente */}
+            <audio ref={nextAudioRef} style={{display: 'none'}} />
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return {
+      trackData: state.trackData
+    };
+};
+  
+export default connect(mapStateToProps, { changeTrack })(MusicControlBox);

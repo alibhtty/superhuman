@@ -1,0 +1,161 @@
+import { connect } from 'react-redux';
+import { changeTrack } from '../../../actions';
+import * as Icons from '../../icons';
+import IconButton from '../../buttons/icon-button';
+import PlayButton from '../../buttons/play-button';
+import { useEffect, useRef, useState } from 'react';
+
+import { PLAYLIST } from "../../../data/index";
+import styles from "./music-control-box.module.css";
+
+    const ADS = [ 'https://dl.dropbox.com/scl/fi/rot1a07gb68d6ldpj4u4t/ad-mixtape.mp3?rlkey=lf0jti064pxzd2o42jsiu8kr3&dl=1', 'https://dl.dropbox.com/scl/fi/irskxi6drzi43qyv5zbuy/ad-4b.mp3?rlkey=ws3fnol5z0fo9pc8u7ruqred3&dl=1'];    // ./assets/audio/ad-4b.mp3
+    
+    let songsPlayed = 0;
+    
+    function MusicControlBox(props){
+        const audioRef = useRef();
+        const [isAdPlaying, setIsAdPlaying] = useState(false);
+    
+        // Carga un archivo de audio en el buffer del audioSource
+        const loadAudio = async (url) => {
+            const audioContext = new AudioContext();
+            const audioSource = audioContext.createBufferSource();
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const arrayBuffer = await response.arrayBuffer();
+                const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                audioSource.buffer = audioBuffer;
+            } catch (error) {
+                console.error('Error loading audio:', error);
+            }
+            return { audioContext, audioSource };
+        };
+        
+    
+    // Reproduce el audioSource actual
+    const playAudio = ({ audioContext, audioSource }, onEnded) => {
+        audioSource.connect(audioContext.destination);
+        audioSource.start();
+        audioSource.onended = () => {
+            // Guarda la canción actual y el tiempo transcurrido en el almacenamiento local
+            localStorage.setItem('currentSong', JSON.stringify(props.trackData));
+            localStorage.setItem('currentTime', audioContext.currentTime);
+            if (onEnded) {
+                onEnded();
+            }
+        };
+    };
+    
+    // Reproduce un anuncio
+    const [isAdLoading, setIsAdLoading] = useState(false);
+    
+    const playAd = async () => {
+        if (!isAdPlaying && !isAdLoading) {
+            setIsAdLoading(true);
+            const adUrl = ADS[Math.floor(Math.random() * ADS.length)];
+            const response = await fetch(adUrl);
+            if (!response.ok) {
+                console.error('Ad not available:', adUrl);
+                setIsAdLoading(false);
+                return;
+            }
+            const adAudio = await loadAudio(adUrl);
+            playAudio(adAudio, () => {
+                nextSong();
+                setIsAdPlaying(false);
+            });
+            setIsAdLoading(false);
+            console.log('Playing ad:', adUrl);
+        }
+    };
+    
+    // Cambia a la siguiente canción
+    const nextSong = async () => {
+        const { trackKey } = props.trackData;
+        const song = PLAYLIST[trackKey[0]].playlistData[trackKey[1]];
+        const songAudio = await loadAudio(song.songUrl);
+        playAudio(songAudio);
+        setIsAdPlaying(false);
+    };
+
+    // Actualiza los metadatos de la canción cada vez que cambia la canción
+    useEffect(() => {
+        if ('mediaSession' in navigator) {
+            const { trackKey } = props.trackData;
+            const song = PLAYLIST[trackKey[0]].playlistData[trackKey[1]];
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: song.songName,
+                artist: song.songArtist,
+                artwork: [{ src: song.songimg, type: 'image/jpeg' }] /*  sizes: '512x512' */
+            });
+        }
+    }, [props.trackData, props.changePlay]);
+
+    // Recupera la canción y el tiempo transcurrido del almacenamiento local
+    useEffect(() => {
+        const currentSong = JSON.parse(localStorage.getItem('currentSong'));
+        const currentTime = localStorage.getItem('currentTime');
+        if (currentSong && currentTime) {
+            // Carga la canción y el tiempo transcurrido del almacenamiento local
+            props.changeTrack(currentSong.trackKey);
+            audioRef.current.currentTime = currentTime;
+        }
+    }, []);
+
+    // Añade un manejador de eventos para el evento 'beforeunload'
+    useEffect(() => {
+        // Guarda la canción actual y el tiempo transcurrido en el almacenamiento local
+        localStorage.setItem('currentSong', JSON.stringify(props.trackData));
+        localStorage.setItem('currentTime', audioRef.current.currentTime);
+    
+        // Incrementa el contador de canciones reproducidas
+        songsPlayed++;
+    
+        // Si se han reproducido 3 canciones, reproduce un anuncio
+        if (songsPlayed % 3 === 0) {
+            playAd();
+        } else {
+            // Si no, reproduce la siguiente canción
+            nextSong();
+        }
+    }, [props.trackData]);
+    
+    
+
+    function decreaseIndex(){
+        if(props.trackData.trackKey[1] !== 0){
+            props.changeTrack([props.trackData.trackKey[0], props.trackData.trackKey[1]-1])
+        }
+    }
+    function increaseIndex(){
+        if(props.trackData.trackKey[1] !== (PLAYLIST[props.trackData.trackKey[0]].playlistData.length)-1){
+            props.changeTrack([props.trackData.trackKey[0], parseInt(props.trackData.trackKey[1])+1])
+        }
+    }
+
+    return (
+        <div className={styles.musicControl}>
+            {/* <IconButton icon={<Icons.Mix />} activeicon={<Icons.Mix />}/> */}
+            <button className={styles.buttonleft} onClick={decreaseIndex}>
+                <Icons.Prev />
+            </button>
+            <PlayButton className={styles.buttonplay} isthisplay={true}/>
+            <button className={styles.button} onClick={increaseIndex}>
+                <Icons.Next />
+            </button>
+            {/* <IconButton icon={<Icons.Loop />} activeicon={<Icons.Loop />}/> */}
+            <audio ref={audioRef} src={props.trackData.track} /> {/* Asegúrate de que el elemento de audio está presente */}
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return {
+      trackData: state.trackData
+    };
+};
+  
+export default connect(mapStateToProps, { changeTrack })(MusicControlBox);

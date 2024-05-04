@@ -1,0 +1,62 @@
+.musicProgress{
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 2rem); /* 100% */
+    margin-left: 1rem;
+}
+.musicProgress span p{
+    width: 38px;
+    margin: 0px 4px;
+    word-break: normal;
+    font-size: 11px; /* 11px */
+    color: #f1f1f1; /* 179 */
+}
+.musicProgress div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.musicProgress input {
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media only screen and (max-width: 920px) and (min-width: 500px){
+    .musicProgress{
+        width: 100%;
+    }
+}
+
+@media (orientation: landscape){
+    .musicProgress{
+        background-color: rgb(0,0,0,0);
+    }
+}
+@media (orientation: portrait){
+    .musicProgress{
+        display: flex;
+        justify-content: center;
+        width: calc(100% - 1rem); /* 100% */
+        padding-top: .5vh;
+        margin-left: .5rem;
+    }
+    .musicProgress span p{
+        width: 28px;
+        font-size: 8px;
+    }
+}
+
+
+
+
+
+
+/* STANDALONE – LANDSCAPE HORIZONTAL */
+@media only screen  and (max-height: 581px)  and (min-width: 767px)  and (display-mode: standalone)  {
+    .musicProgress{
+        background-color: rgb(0,0,0,0);
+        display: none;
+    }
+}

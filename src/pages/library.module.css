@@ -1,0 +1,57 @@
+.LibPage{
+    width: 100%;
+    background-color: #000000;  /* 121212 */
+    color: #fff;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.Library{
+    padding: 32px;
+    margin-bottom: 95px;
+}
+.Library h2 {
+    margin: 0;
+}
+.Grid{
+    margin-top: 24px;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fill,minmax(var(--cards-column-width),1fr));
+}
+@media screen and (max-width: 640px) {
+    .Library{
+        padding: 16px;
+        margin-bottom: 40vh;  /* 270px */
+        margin-top: 52px; /* 42px */
+    }
+    .Grid{
+        grid-gap: 16px;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (orientation: portrait){
+    .Library{
+        margin-bottom: 38vh;  /* 240px */
+    }   
+}
+@media (display-mode: standalone){
+    .Library{
+        margin-bottom: 23vh;  /* 240px */
+        margin-top: 82px; /* 42px */
+    }  
+}
+
+@media only screen and (max-width: 920px) and (min-width: 500px) {
+    .Grid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .Library{
+        margin-bottom: 80px;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 1080px) {
+    .Library{
+        margin-bottom: 14rem;
+    }
+}

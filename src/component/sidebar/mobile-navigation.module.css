@@ -1,0 +1,174 @@
+.MobileNav{
+    position: fixed;
+    z-index: 1; /* 98 */
+    /* background: linear-gradient(to bottom, rgb(0,0,0,.0), rgba(0, 0, 0, 1) ); */
+    /* background: rgba(0, 0, 0, 0.7); */
+    /* backdrop-filter: blur(30px) saturate(1.4) brightness(1) contrast(1);
+    -webkit-backdrop-filter: blur(30px); */
+    /* background: #000000; */      /* 111111 181818 */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    /* border-top: 1px solid black; */
+}
+.BgNav{
+    display: none;
+}
+.MobileNav {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    height: 9vh; /* 9vh */
+    padding-top: 0rem;
+    background: none;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .0) 0%, rgba(10, 10, 10, .8) 50%, rgba(0, 0, 0, 1) 100%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 0%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 0%);
+    -webkit-backdrop-filter: blur(6px) saturate(1) brightness(1) contrast(1);
+    backdrop-filter: blur(6px) saturate(1) brightness(1) contrast(1);
+    /* background-color: rgb(0,0,0,.2);
+        backdrop-filter: blur(5px) saturate(0) brightness(1) contrast(1);
+        -webkit-backdrop-filter: blur(5px)  saturate(0) brightness(1) contrast(1); */
+}
+
+.BgNav {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: -1;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .0) 0%, rgba(0, 0, 0, 0.8) 85%, rgba(0, 0, 0, 0.8) 100%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
+    -webkit-backdrop-filter: blur(30px) saturate(1.4) brightness(1) contrast(1);
+    backdrop-filter: blur(30px) saturate(1.4) brightness(1) contrast(1);
+}
+
+
+/* @media (orientation: portrait){
+    .MobileNav{
+        width: 100%;
+        display: grid;
+        grid-auto-flow:column;
+        height: 9vh;
+        padding-top: 0rem;
+        background: none;
+        z-index: 1;
+    }
+    .BgNav {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0,0,0,.8);
+        backdrop-filter: blur(30px) saturate(1.4) brightness(1) contrast(1);
+        -webkit-backdrop-filter: blur(30px)  saturate(1.4) brightness(1) contrast(1);
+
+        background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.3) 75%, rgba(0,0,0,0) 100%);
+        backdrop-filter: blur(30px) saturate(1.4) brightness(1) contrast(1);
+        -webkit-backdrop-filter: blur(30px)  saturate(1.4) brightness(1) contrast(1);
+        z-index: -1;
+      }
+} */
+@media (display-mode: standalone){
+    .MobileNav{
+        width: 100%;
+        display: grid;
+        grid-auto-flow:column;
+        height: 10vh;
+        padding-top: 0rem;
+        background: none;
+
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(20, 20, 20, .3) 20%, rgba(0, 0, 0, .8) 100%);
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, black 0%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 0%);
+        -webkit-backdrop-filter: blur(6px) saturate(1) brightness(1) contrast(1);
+        backdrop-filter: blur(6px) saturate(1) brightness(1) contrast(1);
+
+        z-index: 1; /* 98 */
+    }
+    .BgNav {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background-color: rgb(40,40,40,.8); */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(20, 20, 20, .5) 70%, rgba(0, 0, 0, .5) 100%);
+        /* backdrop-filter: blur(30px) saturate(1.4) brightness(1) contrast(1);
+        -webkit-backdrop-filter: blur(30px)  saturate(1.4) brightness(1) contrast(1); */
+        z-index: -1;
+      }
+}
+/* @media only screen and (max-width: 1000px) and (min-width: 500px)  {
+    .MobileNav{
+        position: absolute;
+        width: 13rem;
+        display: flex;
+        left: 48px;
+
+        display: grid;
+        grid-auto-flow: column;
+        height: 6.5vh;
+
+        top: 0;
+        background: transparent;
+        backdrop-filter: blur(0);
+        z-index: 999;
+    }
+} */
+
+@media only screen and (max-width: 920px) and (min-width: 500px){
+    .MobileNav{
+        position: absolute;
+        width: 100%;
+        display: grid;
+        grid-auto-flow: column;
+        height: 9vh;
+        bottom: 0;
+        background: none;
+        backdrop-filter: none;
+    }
+}
+
+
+button {
+    color: rgb(255,255,255,1);
+    background: rgb(0,0,0,0);
+    border: none;
+    padding: 0;
+    z-index: 999;
+  }
+
+  @media (orientation: portrait){
+    nav button:active svg{
+        /* color: #066EFF;
+        fill: #066EFF !important; */
+        transition: .2s ease-in-out;
+    }
+    nav button, nav button svg{
+        transition: all .2s ease-out;
+        /* transition-delay: 0s; */
+    }
+    nav button:active{
+        transform: scale(.90);
+        filter: brightness(3) blur(14px) saturate(1) contrast(1);
+        transition: all .1s ease;
+    }
+}
+
+
+@media only screen  and (max-height: 581px)  and (min-width: 767px)  and (display-mode: standalone)  { 
+    .MobileNav{
+        position: fixed;
+        display: block;
+    }
+  }

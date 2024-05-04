@@ -1,0 +1,42 @@
+import { useState, useEffect } from "react";
+import BottomNav from "./BottomNav";
+import Descubre from "./Descubre";
+import "./assets/index.css";
+import { videos } from './assets/reel.js'; // Importa el array de videos desde reel.js
+
+function App() {
+  const [videosState, setVideos] = useState([]);
+  const [videosLoaded, setvideosLoaded] = useState(false);
+
+  useEffect(() => {
+    setVideos(videos); // Usa el array de videos importado desde reel.js
+    setvideosLoaded(true);
+  }, []);
+
+  return (
+    <main>
+      <div className="slider-container">
+        {videosLoaded && videosState.length > 0 ? (
+          <>
+            {videosState.map((video, id) => (
+              <Descubre
+                key={id}
+                index={id}
+                author={video.author}
+                videoURL={video.videoURL}
+                authorLink={video.authorLink}
+                lastVideoIndex={videosState.length - 1}
+              />
+            ))}
+          </>
+        ) : (
+          <>Loading...</>
+        )}
+      </div>
+
+      <BottomNav />
+    </main>
+  );
+}
+
+export default App;

@@ -1,0 +1,98 @@
+.playBtn{
+    width: 65px; /* 32px */
+    height: 65px;
+    border-radius: 35px;
+    color: #fff; /* 000000 */
+    border: none;
+    box-shadow: inset 0 0 10px rgb(0,0,0,.3);
+    background-color: rgb(35, 35, 35, .2) ;  /* ffffff */
+    padding: 0;
+    transition: .25s ease-in-out;
+}
+.playBtn:active{
+    transform: scale(1.1);
+    background-color: rgb(0, 0, 0, .14); /*     0, 0, 0, .2  */
+    /* user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(200,200,10,1);
+    -webkit-user-select: none; */
+}
+.playBtn svg{
+    fill: #000 !important;
+}
+.playBtn svg{
+    fill: #000 !important;
+}
+
+@media only screen and (max-width: 920px) and (min-width: 500px){
+    .playBtn{
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (orientation: landscape){
+    .playBtn{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (orientation: landscape){
+    .playBtn:hover svg{
+        fill: #000000 !important;
+        transition: .6s ease-in-out;
+    }
+    /* .playBtn:hover{
+        transform: scale(.90);
+    } */
+    .PlaylistCardS:hover img{
+        filter: brightness(.5);
+        transition: all .6s ease;
+    }
+}
+/* @media (orientation: portrait){
+    .playBtn:active svg{
+        fill: #ffffff !important;
+        transition: .6s ease-in-out;
+    }
+    .playBtn:active{
+        transform: scale(.90);
+        filter: brightness(.5);
+        transition: all .25s ease;
+    }
+} */
+
+@media (orientation: portrait){
+    .playBtn:active svg{
+        /* color: #066EFF; */
+        fill: rgb(255,255,255,.3) !important;
+        transition: .1s ease-in-out;
+    }
+    .playBtn, .playBtn svg{
+        transition: all .2s ease-out; /* .6s   vuelta de la pulsacion*/
+    }
+    .playBtn:active{
+        transform: scale(.90);
+        filter: brightness(1) blur(0px) saturate(.6) contrast(1);
+        transition: all .05s ease-in-out; /* .15s ease */
+    }
+    .playBtn{
+        box-shadow: inset 0 0 0px rgb(0,0,0,0);
+        background-color: rgb(35, 35, 35, 0) ;
+    }
+}
+
+/* STANDALONE – LANDSCAPE HORIZONTAL */
+@media only screen  and (max-height: 581px)  and (min-width: 767px)  and (display-mode: standalone)  {
+    .playBtn{
+        width: 40px;
+        height: 40px;
+        border-radius: 60px;
+        color: #ffffff;
+        border: none;
+        background-color: rgb(150, 150, 150, .4);
+        padding: 0;
+        transition: .25s ease-in-out;
+    }
+}

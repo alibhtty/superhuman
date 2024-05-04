@@ -1,0 +1,94 @@
+.Playlist{
+    margin-top: 24px;
+    padding: 0 var(--sidenav-margin-right) 12px var(--sidenav-margin-left);
+}
+.Playlist h3{
+    color: var(--text-gray);
+}
+.Playlist p{
+    line-height: 15px;
+    color: var(--text-gray);
+    transition: all ease-in-out .1s;
+}
+.Playlist p:hover{
+    line-height: 15px;
+    color: var(--text-white);
+    scale: 1.01;
+}
+.hr{
+    background-color: var(--sidenav-active);
+    border: none;
+    height: 1px;
+    min-height: 1px;
+}
+
+.SectionCred{
+    width: 100%;
+    margin: 1.2rem .5rem;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5px;
+}
+.SectionTermsItem{
+    color: #7e7e7e;
+    font-size: 9px;
+    text-decoration:underline;
+    transition: all ease-in-out .2s;
+}
+.SectionTermsItem:hover{
+    color: #f1f1f1;
+}
+
+
+/* BOTON DONACION */
+.ProfileBtn{
+    position: relative;
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    column-gap: 0rem;
+    align-items: center;
+    
+    width: 100%;
+    border: none;
+    height: 45px;
+    padding: 2px 7px;
+    border-radius: 16px;
+    background-color: rgba(0, 82, 197, 0.25);
+    /* background-color: rgba(255,255,255,1); */
+    color: #2081ff;
+    margin-top: 1.5rem;
+    
+
+    font-family: "dewi-expand";
+    font-weight: 600;
+    font-size: 12px;
+    transition: all .4s ease-in-out;
+}
+.ProfileBtn:hover{
+    color: #539dff;
+    background-color: rgba(0, 82, 197, 0.35);
+    scale: 1.02;
+}
+
+.ProfileBtn svg{
+    font-size: 30px;
+}
+.ProfileBtn:active{
+    transform: scale(.92);
+  }
+
+.minibtn{
+    font-size: 10px;
+}
+
+
+
+
+/* STANDALONE – LANDSCAPE HORIZONTAL */
+@media only screen  and (max-height: 581px)  and (min-width: 767px)  and (display-mode: standalone)  {
+    .Playlist{
+        display: none;
+    }
+  }
+  

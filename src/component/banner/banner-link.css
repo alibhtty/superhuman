@@ -1,0 +1,70 @@
+.banner-link {
+    width: auto;
+    height: 100%;
+    margin: 0 16px;
+    border: solid 1.6px hsla(0, 0%, 100%, .1);
+    border-radius: 8px;
+    transition: all .6s ease-in-out;
+}
+
+.banner-link:active {
+    border: solid 1.6px hsla(0, 0%, 100%, .0);
+}
+
+.banner-link:active .banner-text {
+    color: #ffffff;
+}
+
+.banner-link:active .banner-subtitle {
+    color: #888888;
+}
+
+.banner-link:active img {
+    filter: brightness(1.4) contrast(.98);
+    border-radius: 8px;
+}
+
+.banner-link:active .banner-description {
+    color: #d1d1d1;
+}
+
+.banner-text {
+    font-size: 10px;
+    font-family: 'dewi-semi';
+    margin: .2rem .4rem .1rem .4rem;
+    color: #888888;
+    transition: all .6s ease-in-out;
+}
+
+.grid-promote {
+    gap: 20px 5px;
+    grid-template-columns: 2fr 1fr;
+}
+
+.banner-subtitle {
+    font-size: 11px;
+    margin: 0rem .4rem .4rem .4rem;
+    color: #d1d1d1;
+    transition: all .6s ease-in-out;
+}
+
+.banner-description {
+    text-align: end;
+    font-size: 10px;
+    float: right;
+    margin: 0rem .4rem .4rem .4rem;
+    color: #000000;
+    transition: all .6s ease-in-out;
+}
+
+.banner-link img {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    transition: all .6s ease-in-out;
+}
+
+@media (orientation: landscape) {
+    .banner-link {
+        display: none;
+    }
+}

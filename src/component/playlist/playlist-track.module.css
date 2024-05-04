@@ -1,0 +1,86 @@
+.trackDiv{
+    display: block;
+    width: 100%;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #f1f1f1;
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px 35px 1fr 52px; /* 28px 36px 1fr 44px */
+    align-items: center;
+    text-align: left;
+    padding: 0px 16px;
+    column-gap: 10px; /* 16px */
+    height: 56px;
+    transition: all 1s ease;
+}
+.playBtn{
+    position: absolute;
+    opacity: 0;
+    background: none;
+    left: 0;  /* 5px */
+    z-index: 2;
+    width: 40px; /* 32px */
+    height: 18px; /* 32px */
+    border: 0;
+}
+.playBtn svg{
+    font-size: 20px; /* 18px */
+    margin-left: 14px;
+    fill: #fff !important;
+}
+.gif{
+    width: 14px !important; /* 14px */
+    height: 34px !important; /* 14px */
+    margin-left: 5px;
+    filter: hue-rotate(85deg);
+    /* filter: saturate(0) contrast(10); */
+}
+@media (orientation: landscape){
+    .trackDiv:hover{
+        background-color: hsla(0,0%,100%,.1);
+    }
+}
+@media (orientation: portrait){
+    .trackDiv:active{
+        background-color: hsla(0,0%,100%,.1);
+    }
+    .gif{
+        width: 14px !important;
+        margin-left: 5px;
+        height: 34px !important;
+        filter: hue-rotate(85deg);
+    }
+    .playBtn svg{
+        font-size: 20px; /* 18px */
+        fill: #fff !important;
+        margin-left: -2px;
+    }
+}
+.trackDiv:hover .SongIndex,
+.trackDiv:hover .gif{
+    opacity: 0;
+}
+.trackDiv:hover .playBtn{
+    opacity: 1;
+}
+@media screen and (max-width: 640px) {
+    .playBtn{
+        width: 28px;
+        margin-right: 4px;   
+    }
+    .trackDiv{
+        padding: 0;
+        padding-left: 0px; /* 8px */
+        margin-right: 0px; /* 4px */
+        width: calc(100% - 0px); /* 100 - 8px  */
+    }
+}
+@media (display: standalone){
+    .playBtn{
+        /* width: 28px;
+        padding-left: 8px; */
+        margin-right: 4px;   
+    }
+}

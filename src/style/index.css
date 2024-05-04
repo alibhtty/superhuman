@@ -1,0 +1,210 @@
+@import "./variables.css";
+/* @font-face {
+  font-family:'BICRO';
+  src: url('./assets/fonts/BICRODEPERSONALUSE.ttf');
+  font-display: swap;
+} */
+@font-face {
+  font-family:'BICRO';
+  src: url('../image/fonts/BICRO.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "dewi-expand";
+  src: url(../image/fonts/RFDewiExpanded-Bold.woff);  /* ../image/fonts/RFDewiExpanded-Bold.woff */
+  font-weight: bold;
+  font-display: swap;
+}
+@font-face {
+  font-family: "dewi-extend";
+  src: url(../image/fonts/RFDewiExtended-Bold.woff);
+  font-weight: bold;
+  font-display: swap;
+}
+@font-face {
+  font-family: "dewi-semi";
+  src: url(../image/fonts/RFDewiExtended-Semibold.woff);
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "dewi-light";
+  src: url(../image/fonts/RFDewiExtended-Light.woff);
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "dewi-black";
+  src: url(../image/fonts/RFDewiExpanded-Black.woff);
+  font-weight: 800;
+  font-display: swap;
+}
+
+
+html {
+  overflow-y: hidden; /* none */
+  overflow-x: hidden;
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  font-family: "dewi-extend";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
+  -webkit-overflow-scrolling: touch; /* none */
+}
+#root {
+  display: flex;
+}
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+button{
+  cursor: pointer;
+}
+:focus {
+  outline: none;
+}
+svg{
+  font-size: 24px;
+}
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsla(0,0%,100%,.3);
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0);
+  /* background: hsla(0,0%,100%,.5); */
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0,0,0,0);
+  /* background: hsla(0,0%,100%,.5); */
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: transparent;
+}
+::-webkit-scrollbar-track:active {
+  background: transparent;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-moz-selection { color: inherit;  background: transparent; }
+::selection      { color: inherit;  background: transparent; } 
+nav .activeLink button{
+  background-color: var(--sidenav-active);
+}
+nav .activeLink button p,
+nav .activeLink button svg{
+  color: var(--text-white);
+}
+p{
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  white-space: unset;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.activeIcon svg{
+  fill: #066eff !important; /* 1db954 */
+  color: #066eff !important; /* 1db954 */
+}
+.PrevBtn,
+.NextBtn{
+    border: none;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    /* margin-right: 16px; */
+    left: 1rem;
+    transition: all .3s ease;
+}
+.PrevBtn:active{
+  transform: scale(.96);
+}
+.PrevBtn svg,
+.NextBtn svg{
+    font-size: 22px;
+}
+.activeTrack{
+  background-color: rgb(5, 109, 255, .15) !important;  /* hsla(0,0%,100%,.1) */
+}
+.activeTrack span p:first-child{
+  color: #066eff !important;   /*   1db954 */
+}
+.activeTabBtn{
+    background-color: rgb(255,255,255,.30);  /* #f1f1f1   #333 */
+    color: #000000;
+    transition: all .4s ease;
+  }
+.activeTabBtn:active{
+    transform: scale(.96);
+  }
+@media screen and (max-width: 640px) {
+  nav .activeLink button{
+    background-color: inherit;
+  }
+  ::-webkit-scrollbar {
+    width: 2px;
+    height: 1px;
+  }
+
+
+
+  /* Ocultar texto de navegacion en standalone */
+  nav .activeLink button p,
+  nav .activeLink button{
+      color: black;
+  }
+}
+
+
+
+/* ======= Animacion carga de playlist ======= */
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+/* ======= Animacion carga de playlist ======= */
+@keyframes fadeIn2 {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.fade-in2 {
+  animation-name: fadeIn2;
+  animation-duration: 3s;
+  animation-fill-mode: both;
+}

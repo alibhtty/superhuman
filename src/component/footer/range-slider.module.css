@@ -1,0 +1,99 @@
+.progressBar{
+	display: flex;
+    align-items: center;
+	position: relative;
+}
+.range__slider {
+	appearance: none;
+	-webkit-appearance: none;
+	background-color: rgb(255,255,255,.2);
+	/* background-color: rgb(0,0,0,.15); */ /* 4a4a4a */
+	/* border: solid 1px #111; */
+	height: 3px;
+	margin-top: 3px;
+	overflow: hidden;
+	width: auto;
+	border-radius: 8px;  /* 2px */
+	cursor: pointer;
+}
+.spanThumb{
+	width: 3px;
+    height: 7px;
+    position: absolute;
+	margin-top: 1px;
+    border-radius: 1px; /* 50px */
+    z-index: 9; /* 1 */
+    opacity: 0;
+    pointer-events: none;
+}
+.range__slider::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	height: 4px;
+}
+.range__slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	position: relative;
+	z-index: 9;
+	background: #066eff; /* a2c9ff azul claro */
+	/* border-radius: 50%; */
+	box-shadow: -410px 0 0 408px rgb(255, 255, 255, .5);  /* 6, 110, 255,1 */
+	cursor: pointer;
+	height: 12px; /* 4px */
+	margin-top: 0px;
+	width: 0px; /* 2px */
+	border: 0;
+}
+.range__slider::-moz-range-thumb {
+	background: #c3dcff;
+	border-radius: 50%;
+	box-shadow: -410px 0 0 408px #066eff;
+	cursor: pointer;
+	height: 4px;
+	width: 4px;
+	border: 0;
+}
+.range__slider::-moz-range-track {
+	background-color: #535353;
+}
+.range__slider::-moz-range-progress {
+	background-color: #b3b3b3;
+	height: 4px;
+}
+.range__slider::-ms-fill-upper {
+	background-color: #535353;
+}
+.range__slider::-ms-fill-lower {
+	background-color: #b3b3b3;
+}
+/* .progressBar:hover .range__slider::-webkit-slider-thumb {
+	background: #a2c9ff;
+	box-shadow: -410px 0 0 408px #066eff;
+} */
+.progressBar .range__slider::-webkit-slider-thumb {
+	background: #a2c9ff;
+	box-shadow: -410px 0 0 406px rgb(255, 255, 255, .5);
+}
+.progressBar:hover .range__slider::-moz-range-thumb {
+	background: #066eff;
+	box-shadow: -410px 0 0 408px #066eff;
+}
+.progressBar:hover span {
+    background: #ffffff !important;
+    opacity: 1 !important;
+}
+
+
+
+@media only screen and (max-width: 920px) and (min-width: 500px) {
+    .range__slider {
+		appearance: none;
+		-webkit-appearance: none;
+		background-color: #4a4a4a;
+		height: 6px;
+		margin-top: 5px;
+		overflow: hidden;
+		width: auto;
+		border-radius: 8px;
+		cursor: pointer;
+	}
+}

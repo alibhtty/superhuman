@@ -1,0 +1,91 @@
+import React, { useRef, useEffect, useState } from 'react';
+import { changeTrack, changePlay } from '../../actions';
+import { PLAYLIST } from "../../data/index";
+import styles from "./footer.module.css";
+
+import { connect } from 'react-redux';
+import { useDrag } from '@use-gesture/react';
+import { animated, useSpring } from '@react-spring/web';
+import FooterLeft from './footer-left';
+import MusicControlBox from './player/music-control-box';
+import MusicProgressBar from './player/music-progress-bar';
+import Audio from './audio';
+
+function SongSlider(props){
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const audioRef = useRef(null);
+
+    const handleTrackClick = (position) => {
+        audioRef.current.currentTime = position;
+    };
+
+    const [style, api] = useSpring(() => ({ y: "100%" }));
+    const ref = useRef(null);
+
+    useDrag(({ down, movement: [, my], direction: [, dy], velocity }) => {
+        const height = ref.current.getBoundingClientRect().height;
+        const y = Math.max(-height + 100, Math.min(my, 0));
+        const isGone = Math.abs(my) > height * 0.2 && Math.abs(dy) > 1 && velocity > 0.2;
+        api.start({ y: down ? y : isGone ? (dy < 0 ? "-100%" : "0%") : "0%", immediate: down, config: { mass: 1, tension: 500, friction: 50 } });
+    }, { target: ref, eventOptions: { passive: false } });
+
+    const handleClick = () => {
+        api.start({ y: style.y.get() === "0%" ? "100%" : "0%", config: { mass: 1, tension: 500, friction: 50 } });
+    };
+
+    useEffect(() => {
+        if (props.isPlaying) {
+          audioRef.current.play();
+        } else {
+          audioRef.current.pause();
+        }
+    }, [audioRef, props.isPlaying]);
+
+    useEffect(() => {
+        audioRef.current.addEventListener('ended', () => {
+            if(props.trackData.trackKey[1] === (PLAYLIST[props.trackData.trackKey[0]].playlistData.length)-1){
+                props.changeTrack([props.trackData.trackKey[0], 0])
+            }else{
+                props.changeTrack([props.trackData.trackKey[0], parseInt(props.trackData.trackKey[1])+1])
+            }
+        })
+    });
+
+    return (
+        <animated.footer
+          ref={ref}
+          className={styles.footer}
+          style={{...style, touchAction: 'none'}}
+          onClick={handleClick}
+        >
+          <div className={styles.nowplayingbar}>
+            <FooterLeft />
+            <div className={styles.footerMid}>
+              <MusicControlBox />
+              <MusicProgressBar 
+                currentTime={currentTime} 
+                duration={duration} 
+                handleTrackClick={handleTrackClick}
+              />
+              <Audio
+                ref={audioRef}
+                handleDuration={setDuration}
+                handleCurrentTime={setCurrentTime}
+                trackData={props.trackData}
+                isPlaying={props.isPlaying}
+              />
+            </div>
+          </div>
+        </animated.footer>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return {
+      trackData: state.trackData,
+      isPlaying: state.isPlaying
+    };
+};
+
+export default connect(mapStateToProps, { changeTrack, changePlay })(SongSlider);

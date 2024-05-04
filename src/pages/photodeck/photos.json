@@ -1,0 +1,37 @@
+[
+    {
+        "url": "image/tarjetas/04.jpg",
+        "link": "../#/playlist/boxcar",
+        "orientation": "landscape"
+    },
+    {
+        "url": "image/tarjetas/01.jpg",
+        "link": "../#/playlist/room-edition",
+        "orientation": "portrait"
+    },
+    {
+        "url": "image/tarjetas/02.jpg",
+        "link": "../#/playlist/radioshow",
+        "orientation": "portrait"
+    },
+    {
+        "url": "image/tarjetas/03.jpg",
+        "link": "../#/playlist/cage-script",
+        "orientation": "portrait"
+    },
+    {
+        "url": "image/tarjetas/06.jpg",
+        "link": "../#/playlist/djromer",
+        "orientation": "portrait"
+    },
+    {
+        "url": "image/tarjetas/07.jpg",
+        "link": "../#/playlist/urbano",
+        "orientation": "portrait"
+    },
+    {
+        "url": "image/tarjetas/08.jpg",
+        "link": "../#/playlist/desfoguez",
+        "orientation": "portrait"
+    }
+]

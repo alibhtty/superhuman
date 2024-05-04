@@ -1,0 +1,107 @@
+h1::before {
+    background: hsla(206, 46%, 50%, 0.4);
+    background: linear-gradient(
+      45deg,
+      hsla(347, 100%, 50%, .4) 0%,
+      hsla(189, 100%, 50%, .5) 25%,
+      /* hsla(156, 100%, 50%, 1) 50%, */
+      hsla(60, 100%, 50%, .4) 75%,
+      hsla(241, 100%, 60%, 1) 100%
+    );
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 95%;
+    left: 12px;
+    bottom: 0;
+    transform: rotate(-2.5deg);
+    animation: 0.8s highlight .8s 1 normal forwards;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: blur(16px);
+    z-index: -1;
+  }
+  
+  h1::after {
+    background: hsla(264, 46%, 50%, 1);
+    background: linear-gradient(
+      45deg,
+      rgb(229, 211, 255) 0%,
+      hsla(189, 100%, 50%, 1) 15%,
+      rgb(0, 64, 255, 1) 60%,
+      /* rgb(255, 111, 0, .5) 75%, */
+      rgb(255, 255, 255) 90%
+    );
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1.9px;  /* 2px */
+    left: 18%; /* -1px */
+    bottom: 5.13%; /* 5% */
+    transform: rotate(0deg);
+    animation: 0.8s highlight 1.6s 1 normal forwards;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: blur(0px) saturate(200%);
+    mix-blend-mode: plus-lighter;
+    border-radius: 7px;
+    z-index: 11;
+  }
+  
+  @-webkit-keyframes highlight {
+    from {
+      width: 0;
+      opacity: 0;
+      border: 0;
+    }
+  
+    to {
+      width: -webkit-calc(100% + 4px);
+      width: calc(100% + 4px);
+      opacity: 1;
+      border: 0;
+    }
+  }
+  
+  @-moz-keyframes highlight {
+    from {
+      width: 0;
+      opacity: 0;
+      border: 0;
+    }
+  
+    to {
+      width: -moz-calc(100% + 4px);
+      width: calc(100% + 4px);
+      opacity: 1;
+      border: 0;
+    }
+  }
+  
+  @-o-keyframes highlight {
+    from {
+      width: 0;
+      opacity: 0;
+      border: 0;
+    }
+  
+    to {
+      width: calc(100% + 4px);
+      opacity: 1;
+      border: 0;
+    }
+  }
+  
+  @keyframes highlight {
+    from {
+      width: 0;
+      opacity: 0;
+      border: 0;
+    }
+  
+    to {
+      width: -webkit-calc(100% + 4px);
+      width: -moz-calc(100% + 4px);
+      width: calc(58% + 4px);
+      opacity: 1;
+      border: 0;
+    }
+  }
